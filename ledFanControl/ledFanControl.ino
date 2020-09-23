@@ -17,7 +17,9 @@ decode_results results;
 
 void setup() {
   // we make all the declarations at once
-  irrecv.enableIRIn(); // Empezamos la recepción  por IR
+  Serial.begin(9600);
+  irrecv.enableIRIn();
+  
   for (count = 0; count < 5; count++) {
     pinMode(pinArray[count], OUTPUT);
   }
@@ -27,15 +29,18 @@ boolean on = LOW;
 
 
 void loop() {
-
+  
+if (irrecv.decode(&results)){
+        Serial.println(results.value, HEX);
+        irrecv.resume();
+  }
   
   timer = analogRead(A0);  //El valor leido por analog read es el temporizador
       
           if (irrecv.decode(&results)) {
           // Dato recibido, conmutamos el LED
 
-               on =! on;
-                
+           
                                 for (count = 0; count < 5; count++) {
                                   timer = analogRead(A0);
                                   digitalWrite(pinArray[count], HIGH);
@@ -52,12 +57,7 @@ void loop() {
                                 }
         
                 
-                
-
-                if (results.value == 0xFF18E7) {
-                on == on;
-                
-                }
+               
                 
       }
   }
