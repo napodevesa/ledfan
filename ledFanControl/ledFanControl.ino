@@ -55,7 +55,7 @@ void loop() {
                 
 
                 if (results.value == 0xFF18E7) {
-                on == LOW;
+                on == on;
                 
                 }
                 
