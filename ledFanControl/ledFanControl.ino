@@ -40,6 +40,9 @@ if (irrecv.decode(&results)){
           if (irrecv.decode(&results)) {
           // Dato recibido, conmutamos el LED
 
+        
+
+           if(results.value == 0xFF6897){
            
                                 for (count = 0; count < 5; count++) {
                                   timer = analogRead(A0);
@@ -55,9 +58,10 @@ if (irrecv.decode(&results)){
                                   digitalWrite(pinArray[count], LOW);
                                   delay(timer);
                                 }
+
+                }
+                
+                irrecv.resume();
         
-                
-               
-                
       }
   }
