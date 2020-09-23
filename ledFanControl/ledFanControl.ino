@@ -34,15 +34,16 @@ if (irrecv.decode(&results)){
         Serial.println(results.value, HEX);
         irrecv.resume();
   }
+
   
-  timer = analogRead(A0);  //El valor leido por analog read es el temporizador
+          timer = analogRead(A0);  //El valor leido por analog read es el temporizador
       
           if (irrecv.decode(&results)) {
           // Dato recibido, conmutamos el LED
 
         
 
-           if(results.value == 0xFF6897){
+           if(results.value == 0xFF6897){  //botón 0//
            
                                 for (count = 0; count < 5; count++) {
                                   timer = analogRead(A0);
@@ -62,6 +63,30 @@ if (irrecv.decode(&results)){
                 }
                 
                 irrecv.resume();
+
+                if(results.value == 0xFF30CF){
+           
+                                for (count = 0; count < 5; count++) {
+                                  timer = analogRead(A0);
+                                  digitalWrite(pinArray[count], LOW);
+                                  delay(timer);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  delay(timer);
+                                }
+                                for (count = 4; count >= 0; count--) {
+                                  timer = analogRead(A0);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  delay(timer);
+                                  digitalWrite(pinArray[count], LOW);
+                                  delay(timer);
+                                }
+
+                }
+                
+                irrecv.resume();
+                
+        }
+
         
-      }
+   
   }
