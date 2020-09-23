@@ -25,44 +25,75 @@ void setup() {
   }
 }
 
-boolean on = LOW;
-
 
 void loop() {
-  
-if (irrecv.decode(&results)){
-        Serial.println(results.value, HEX);
-        irrecv.resume();
-  }
 
-  
-          timer = analogRead(A0);  //El valor leido por analog read es el temporizador
-      
+timer = analogRead(A0);  //El valor leido por analog read es el temporizador
+digitalWrite(pinArray[1], HIGH);
+delay(timer);
+digitalWrite(pinArray[1], LOW);
+delay(timer);
+
           if (irrecv.decode(&results)) {
           // Dato recibido, conmutamos el LED
 
-        
 
-           if(results.value == 0xFF6897){  //botón 0//
-           
-                                for (count = 0; count < 5; count++) {
-                                  timer = analogRead(A0);
-                                  digitalWrite(pinArray[count], HIGH);
+                   if(results.value == 0xFF6897){  //botón 0//
+                              
+                              for (count = 0; count < 5; count++) {
+                                  digitalWrite(pinArray[2], HIGH);
                                   delay(timer);
-                                  digitalWrite(pinArray[count], LOW);
+                                  digitalWrite(pinArray[2], LOW);
                                   delay(timer);
-                                }
-                                for (count = 4; count >= 0; count--) {
-                                  timer = analogRead(A0);
-                                  digitalWrite(pinArray[count], HIGH);
-                                  delay(timer);
-                                  digitalWrite(pinArray[count], LOW);
-                                  delay(timer);
-                                }
+                              } 
 
                 }
                 
-                irrecv.resume();
+               irrecv.resume();
+
+          }
+
+                  if(results.value == 0xFF30CF){ //boton 1
+                   
+                                        for (count = 0; count < 5; count++) {
+                                          timer = analogRead(A0);
+                                          digitalWrite(pinArray[count], LOW);
+                                          delay(timer);
+                                          digitalWrite(pinArray[count], HIGH);
+                                          delay(timer);
+                                        }
+                                        for (count = 4; count >= 0; count--) {
+                                          timer = analogRead(A0);
+                                          digitalWrite(pinArray[count], HIGH);
+                                          delay(timer);
+                                          digitalWrite(pinArray[count], LOW);
+                                          delay(timer);
+                                        }
+        
+                        }
+          
+  
+          if (irrecv.decode(&results)){
+                  Serial.println(results.value, HEX);
+                  irrecv.resume();
+            }
+
+
+      /*
+          if (irrecv.decode(&results)) {
+          // Dato recibido, conmutamos el LED
+
+
+           if(results.value == 0xFF6897){  //botón 0//
+           
+                                digitalWrite(pinArray[2], HIGH);
+delay(timer);
+digitalWrite(pinArray[2], LOW);
+delay(timer);
+
+                }
+                
+               //irrecv.resume();
 
                 if(results.value == 0xFF30CF){
            
@@ -82,11 +113,31 @@ if (irrecv.decode(&results)){
                                 }
 
                 }
+
+                 if(results.value == 0xFF10EF){
+           
+                                for (count = 0; count < 5; count++) {
+                                  timer = analogRead(A0);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  delay(timer);
+                                  digitalWrite(pinArray[count], LOW);
+                                  delay(timer);
+                                 
+                                }
+                                for (count = 4; count >= 0; count--) {
+                                  timer = analogRead(A0);
+                                  digitalWrite(pinArray[count], HIGH);
+                                  delay(timer);
+                                  digitalWrite(pinArray[count], LOW);
+                                  delay(timer);
+                                }
+
+                }
                 
-                irrecv.resume();
+              // irrecv.resume();
                 
         }
-
-        
-   
+*/
   }
