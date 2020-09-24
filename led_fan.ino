@@ -6,6 +6,8 @@
    @author: David Cuartielles
    @hardware: David Cuartielles, Aaron Hallborg
    @modified by: aprendiendoarduino
+   @modified by: napoleón devesa
+   
 */
 
 int pinArray[] = {2, 3, 4, 5, 6};
